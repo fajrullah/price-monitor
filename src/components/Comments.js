@@ -25,6 +25,16 @@ class Comments extends Component {
     })
     .catch(err => console.log(err))
   }
+  refreshData(){
+    fetchingDataAPI('comm')
+    .then(result => result.data)
+    .then(text => {
+      this.setState({
+          text
+      })
+    })
+    .catch(err => console.log(err))
+  }
     handleChange(event) {
       this.setState({ [event.target.name]: event.target.value});
     }
@@ -33,7 +43,8 @@ class Comments extends Component {
     postingDataAPI('comment',{
         comment , username
       }).then(result => {
-        alert('data was submitted: ' + result);
+        alert('comment was submitted: ');
+        this.refreshData()
         return result
       }).catch(err => console.log(err))
       event.preventDefault();
@@ -41,12 +52,22 @@ class Comments extends Component {
   handleClickUp = (key,value) => {
     const likes = value + 1
     const id_comment = key
-    putDataAPI(`comment/likes`,{id_comment , likes }).then(result => alert('Likes + 1')).catch(err => console.log(err))
+    putDataAPI(`comment/likes`,{id_comment , likes })
+    .then(result => {
+      alert('Likes + 1')
+      this.refreshData()
+      return result
+    }).catch(err => console.log(err))
   }
   handleClickDown = (key,value) => {
     const dislikes = value + 1
     const id_comment = key
-    putDataAPI(`comment/dislikes`,{id_comment , dislikes }).then(result => alert('Dislikes + 1')).catch(err => console.log(err))
+    putDataAPI(`comment/dislikes`,{id_comment , dislikes })
+    .then(result => {
+      alert('Dislikes + 1')      
+      this.refreshData()
+      return result
+    }).catch(err => console.log(err))
   }
   render(){
     const { comment, text, username } = this.state
