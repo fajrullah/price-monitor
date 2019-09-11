@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import {  Input , Form , Button } from "semantic-ui-react";
-
+import { postingDataAPI } from '../utils/AxiosMethod';
 class Savedata extends Component {
 	constructor(props) {
 	  super(props);
@@ -14,7 +14,13 @@ class Savedata extends Component {
 	    this.setState({value: event.target.value});
 	  }
 	  handleSubmit(event) {
-	    alert('A name was submitted: ' + this.state.value);
+	    const link = this.state.value
+		postingDataAPI('links',{
+	    	link
+	    }).then(result => {
+	    	alert('data was submitted: ' + result);
+	    	return result
+	    }).catch(err => console.log(err))
 	    event.preventDefault();
 	  }
 	render(){
