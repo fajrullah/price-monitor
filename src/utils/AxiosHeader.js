@@ -2,7 +2,7 @@ import axios from 'axios'
 
 export default function withStoredHeaders() {
   return axios.create({
-  	baseURL: 'http://localhost:4000/',
+  	baseURL: 'https://price-rest.herokuapp.com/',
   })
 }
 
