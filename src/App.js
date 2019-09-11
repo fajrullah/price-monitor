@@ -4,15 +4,49 @@ import './App.css';
 import Comments from './components/Comments';
 import Savedata from './components/Savedata';
 import Reply from './components/Reply';
-import { Container, Header, List, Input , Form , Button } from "semantic-ui-react";
+import { Container, Header, List, Input , Form , Button , Menu } from "semantic-ui-react";
+import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import 'semantic-ui-css/semantic.min.css'
 
+function Index() {
+  return (<div>
+  	<Header as="h3">Add Link Products</Header>
+      <Savedata/>
+    <Comments/></div>);
+}
+
+function pageTwo() {
+    return (<div>
+  	<Header as="h3">Page Two</Header>
+   	</div>);
+}
+
+function pageThree() {
+  return (<div>
+  	<Header as="h3">Page Three</Header>
+   	</div>);
+}
 function App() {
   return (
   <Container style={{ margin: 20 }}>
-    <Header as="h3">Add Link Products</Header>
-      <Savedata/>
-    <Comments/>
+  <Router>
+      <div>
+	     <Menu>
+	        <Menu.Item name='one'>
+	        	<Link to="/">Page One</Link>
+	        </Menu.Item>
+	        <Menu.Item name='two'>
+	        	<Link to="/pageone/">Page Two</Link>
+	        </Menu.Item>
+	        <Menu.Item name='three' >
+	          <Link to="/pagethree/">Page Three</Link>
+	        </Menu.Item>
+	   	</Menu>
+        <Route path="/" exact component={Index} />
+        <Route path="/pageone/" component={pageTwo} />
+        <Route path="/pagethree/" component={pageThree} />
+      </div>
+    </Router>
   </Container>
   );
 }

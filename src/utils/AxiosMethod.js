@@ -8,3 +8,17 @@ export const postingDataAPI = async (values,data) => {
     	return err
     });
 }
+
+export const fetchingDataAPI = (values) => {
+	  return axios().get(values).then(response => {
+	    return response.data
+	  })
+}
+
+export const putDataAPI = async (values,data) => {
+	  return await axios().put(values,data).then(response => {
+	    return {response : response.status}
+	  }).catch((err) => {
+    	return err
+    });
+}
