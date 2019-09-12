@@ -1,16 +1,18 @@
 import React, { Component } from 'react';
-import { Icon, Label, Menu, Table } from 'semantic-ui-react'
-import { fetchingDataAPI, postingDataAPI , putDataAPI } from '../utils/AxiosMethod';
+import { Icon, Label, Menu, Table , Image } from 'semantic-ui-react'
+import {  postingDataAPI }from '../utils/AxiosMethod';
 import { toDateTimeLocal } from '../utils/Helper';
 
 class Detail extends Component {
     constructor(props) {
     super(props);
-
     this.state = {
       data : [],
       loading : true,
     };
+  }
+  componentWillUnmount(){
+
   }
   componentDidMount(){
     const id_link = this.props.match.params.id
@@ -23,11 +25,19 @@ class Detail extends Component {
   }
   render(){
     const { data , loading } = this.state
+    const image = data.img_url
     if(loading){
       return (<div> Loading ... </div>)
     }
   return (
-        <div>data</div>
+        <div>
+          <div>{data.name} - {data.price}</div>
+          {
+            image.map((key,index) => {
+              return (<Image key={index} src={key.url} size='small' />)
+            })
+          }
+        </div>
       );
   }
 }

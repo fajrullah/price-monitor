@@ -17,6 +17,7 @@ class Comments extends Component {
     fetchingDataAPI('links')
     .then(result => result.data)
     .then(data => {
+
       this.setState({data , loading : false})
     })
     .catch(err => console.log(err))
@@ -43,7 +44,7 @@ class Comments extends Component {
           <Table.Cell><Link to={`/pagethree/${key.id_link}`} >{key.link}</Link></Table.Cell>
           <Table.Cell>{key.name}</Table.Cell>
           <Table.Cell>{key.price}</Table.Cell>
-          <Table.Cell>{key.img_url}</Table.Cell>
+          <Table.Cell>{JSON.stringify(key.img_url)}</Table.Cell>
         </Table.Row>)
         })
       }

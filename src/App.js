@@ -41,7 +41,7 @@ function App() {
 	        	<Link to="/pagetwo/">Page Two</Link>
 	        </Menu.Item>
 	        <Menu.Item name='three' >
-	          <Link to="/pagethree/foo">Page Three</Link>
+	          <Link to="/pagethree/2">Page Three</Link>
 	        </Menu.Item>
 	   	</Menu>
         <Route path="/" exact component={Index} />
