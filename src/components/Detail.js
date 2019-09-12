@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import { Icon, Label, Menu, Table , Image } from 'semantic-ui-react'
-import {  postingDataAPI }from '../utils/AxiosMethod';
+import { Icon, Label, Menu, Table , Image , Button } from 'semantic-ui-react'
+import {  postingDataAPI , fetchingDataAPI }from '../utils/AxiosMethod';
 import { toDateTimeLocal } from '../utils/Helper';
 
 class Detail extends Component {
@@ -23,6 +23,20 @@ class Detail extends Component {
     })
     .catch(err => console.log(err))
   }
+  handleStart(id_link,link){
+    postingDataAPI('scheduler/start',{id_link,link})
+    .then(result => {
+      alert(result)
+    })
+    .catch(err => console.log(err))
+  }
+  handleStop(){
+    fetchingDataAPI('scheduler/stop')
+    .then(result => {
+      alert(result)
+    })
+    .catch(err => console.log(err))
+  }
   render(){
     const { data , loading } = this.state
     const image = data.img_url
@@ -32,6 +46,7 @@ class Detail extends Component {
   return (
         <div>
           <div>{data.name} - {data.price}</div>
+          <div><Button onClick={ () => this.handleStart(data.id_link,data.link) }>Active Scheduler every Hour</Button><Button onClick={() => this.handleStop(data.id_link,data.link)} >Stop</Button></div>
           {
             image.map((key,index) => {
               return (<Image key={index} src={key.url} size='small' />)
