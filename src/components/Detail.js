@@ -26,14 +26,14 @@ class Detail extends Component {
   handleStart(id_link,link){
     postingDataAPI('scheduler/start',{id_link,link})
     .then(result => {
-      alert(result)
+      alert(result.status)
     })
     .catch(err => console.log(err))
   }
   handleStop(){
     fetchingDataAPI('scheduler/stop')
     .then(result => {
-      alert(result)
+      alert(result.status)
     })
     .catch(err => console.log(err))
   }
