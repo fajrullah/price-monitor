@@ -9,6 +9,7 @@ class Comments extends Component {
       comment : '',
       text : [],
       username : 'anon',
+      loading : true
     };
     this.handleClickUp = this.handleClickUp.bind(this);
     this.handleClickDown = this.handleClickDown.bind(this);
@@ -20,7 +21,7 @@ class Comments extends Component {
     .then(result => result.data)
     .then(text => {
       this.setState({
-          text
+          text , loading : false
       })
     })
     .catch(err => console.log(err))
@@ -30,7 +31,7 @@ class Comments extends Component {
     .then(result => result.data)
     .then(text => {
       this.setState({
-          text
+          text 
       })
     })
     .catch(err => console.log(err))
@@ -70,7 +71,10 @@ class Comments extends Component {
     }).catch(err => console.log(err))
   }
   render(){
-    const { comment, text, username } = this.state
+    const { loading ,  comment, text, username } = this.state
+    if(loading){
+      return (<div> Loading ... </div>)
+    }
 
     return (
     <Comment.Group>

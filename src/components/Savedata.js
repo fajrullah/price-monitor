@@ -1,11 +1,13 @@
 import React, { Component } from 'react';
 import {  Input , Form , Button } from "semantic-ui-react";
 import { postingDataAPI } from '../utils/AxiosMethod';
+
 class Savedata extends Component {
 	constructor(props) {
 	  super(props);
 	  this.state = {
-	  	value : ''
+	  	value : '',
+	  	loading : true
 	  };
       	this.handleChange = this.handleChange.bind(this);
     	this.handleSubmit = this.handleSubmit.bind(this);

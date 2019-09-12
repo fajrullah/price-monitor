@@ -5,6 +5,7 @@ import Comments from './components/Comments';
 import Savedata from './components/Savedata';
 import Reply from './components/Reply';
 import Table from './components/Table';
+import Detail from './components/Detail';
 import { Container, Header, List, Input , Form , Button , Menu } from "semantic-ui-react";
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import 'semantic-ui-css/semantic.min.css'
@@ -24,7 +25,7 @@ function pageTwo() {
 
 function pageThree() {
   return (<div>
-  	<Header as="h3">Page Three</Header>
+  	     
    	</div>);
 }
 function App() {
@@ -40,12 +41,13 @@ function App() {
 	        	<Link to="/pagetwo/">Page Two</Link>
 	        </Menu.Item>
 	        <Menu.Item name='three' >
-	          <Link to="/pagethree/">Page Three</Link>
+	          <Link to="/pagethree/foo">Page Three</Link>
 	        </Menu.Item>
 	   	</Menu>
         <Route path="/" exact component={Index} />
         <Route path="/pagetwo/" component={pageTwo} />
-        <Route path="/pagethree/" component={pageThree} />
+        <Route path='/pagethree/:id' component={Detail} />
+
       </div>
     </Router>
   </Container>
